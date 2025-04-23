@@ -1,4 +1,4 @@
-import { SignUp } from "../pages/signup";
+import { SignUp } from "../pages/Signup";
 const signUp = new SignUp();
 const data = require("../fixtures/testdata.json")
 
