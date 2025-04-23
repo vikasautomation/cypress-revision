@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
   
-    "test:Login": "npx cypress run --spec cypress/integration/LoginTest.js"
+    "test:LoginTest": "npx cypress run --spec cypress/integration/LoginTest.js"
 
 
   },
