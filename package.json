@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
   
-    "test:LoginTest": "npx cypress run --spec cypress/integration/LoginTest.js"
-
+    "test:LoginTest": "npx cypress run --spec cypress/integration/LoginTest.js",
+     "test:SignUpTest": "npx cypress run --spec cypress/integration/SignUpTest.js"
 
   },
   "author": "",
