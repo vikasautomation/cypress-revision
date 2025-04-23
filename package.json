@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "npm" :"npx cypress",
-    "test:Login": "npx cypress run --spec 'cypress/integration/LoginTest.js'",
+    "test:Login": "cypress run --spec 'cypress/integration/LoginTest.js'",
     "test:SignUp":"npx cypress run --spec 'cypress/integration/SignUpTest.js'"
 
   },
@@ -15,7 +15,7 @@
     "cypress": "^14.3.1"
   },
   "devDependencies": {
-    "@cypress/webpack-preprocessor": "^6.0.4",
+    
     "cypress-mochawesome-reporter": "^3.8.2"
   }
 }
