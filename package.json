@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:Login": "npx cypress run --spec 'cypress/integration/LoginTest.js'",
+    "test:SignUp":"npx cypress run --spec 'cypress/integration/SignUpTest.js'"
+
   },
   "author": "",
   "license": "ISC",
