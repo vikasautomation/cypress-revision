@@ -3,7 +3,7 @@ name: Cypress Tests
 on: push
 
 jobs:
-  Login-Signup Test:
+  Login_Signup_Test:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
