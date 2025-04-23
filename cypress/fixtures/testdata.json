@@ -1,0 +1,15 @@
+{
+"signup":{
+    "firstName":"vikas",
+    "lastName":"kumar",
+    "email":"testing@yopmail.com",
+    "password":"Testing@123"
+},
+"login":{
+    "email":"testing@yopmail.com",
+    "password":"Testing@123"
+}
+}
+
+    
+
