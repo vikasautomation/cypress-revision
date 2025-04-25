@@ -2,6 +2,19 @@ pipeline {
     agent any
 
     stages {
+        stage('Install Node.js') {
+            steps {
+                script {
+                    bat '''
+                    curl -o node-v18.18.2-x64.msi https://nodejs.org/dist/v18.18.2/node-v18.18.2-x64.msi
+                    msiexec /i node-v18.18.2-x64.msi /quiet /norestart
+                    setx PATH "%PATH%;C:\\Program Files\\nodejs"
+                    node -v
+                    npm -v
+                    '''
+                }
+            }
+        }
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
