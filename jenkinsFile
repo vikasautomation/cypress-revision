@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Run Cypress tests in headless mode (Electron browser)
-                    sh 'npx cypress run --browser electron --headless --no-sandbox --disable-gpu'
+                    sh 'npx cypress run --browser electron --headless
                 }
             }
         }
