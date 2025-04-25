@@ -1,9 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'cypress/browsers:node18.12.0-chrome107'
-            args '-u root:root' // optional, gives root permissions
-        }
+     
     }
 
     environment {
