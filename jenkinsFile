@@ -1,83 +1,26 @@
 pipeline {
     agent any
 
-    // environment {
-    //     // Environment Variables
-    //     DISPLAY = ':99'                         // X virtual framebuffer for headless display
-    //     CYPRESS_CACHE_FOLDER = "${env.WORKSPACE}/.cache"  // Custom cache folder for Cypress
-    //     CYPRESS_ENV = 'production'             // Example of setting a Cypress environment
-    //     CYPRESS_INSTALL_BINARY = '0'           // Skip Cypress binary install (use for faster setup)
-    //     PATH = "/usr/local/bin:${env.PATH}"    // If you need to modify PATH for any reason (e.g., custom node or browser)
-    // }
-
-    options {
-        // Timeout to avoid long running jobs
-        timeout(time: 60, unit: 'MINUTES')
-        // Discard old builds after 10 builds to keep the workspace clean
-        buildDiscarder(logRotator(numToKeepStr: '10'))
-    }
-
     stages {
+        
         stage('Install Dependencies') {
             steps {
-                script {
-                    // Clean cache (optional, but can avoid issues if there are old caches)
-                    sh 'rm -rf node_modules'
-                    sh 'rm -rf ~/.cache/Cypress'
-
-                    // Install dependencies (e.g., Node, Cypress)
-                    sh 'npm ci'  // Use npm ci for faster, cleaner installs
-                }
+                sh 'npm install'
+                sh 'npx cypress install'
             }
         }
 
         stage('Run Cypress Tests') {
             steps {
-                script {
-                    // Run Cypress tests in headless mode (Electron browser)
-                    sh 'npx cypress run --browser chrome --headless'
-
-                }
-            }
-        }
-
-        stage('Post Results') {
-            steps {
-                script {
-                    // Publish Cypress Test results as HTML (Optional)
-                    junit '**/test-results/*.xml'  // Collect test results in JUnit format (if Cypress supports XML export)
-
-                    // Optionally, upload Cypress videos/screenshots as artifacts
-                    archiveArtifacts allowEmptyArchive: true, artifacts: '**/cypress/videos/*.mp4, **/cypress/screenshots/*', onlyIfSuccessful: true
-                }
-            }
-        }
-
-        stage('Clean Up') {
-            steps {
-                script {
-                    // Clean up after the build (optional)
-                    sh 'rm -rf ~/.cache/Cypress'
-                    sh 'rm -rf node_modules'
-                }
+                sh 'npx cypress run'
             }
         }
     }
 
     post {
         always {
-            // Perform actions that should always happen, like sending notifications
-            cleanWs()  // Clean up workspace after the build, including any temporary files
-        }
-
-        success {
-            echo 'Tests completed successfully!'
-            // Optional: Add any notifications here (e.g., Slack notifications)
-        }
-
-        failure {
-            echo 'Tests failed. Check the logs for errors.'
-            // Optional: Send a failure notification (e.g., Slack)
+            archiveArtifacts artifacts: '**/cypress/screenshots/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**/cypress/videos/**', allowEmptyArchive: true
         }
     }
 }
