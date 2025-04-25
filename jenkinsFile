@@ -1,11 +1,5 @@
 pipeline {
-    agent {
-     
-    }
-
-    environment {
-        CYPRESS_baseUrl = 'https://thinking-tester-contact-list.herokuapp.com/'
-    }
+    agent any
 
     stages {
         stage('Install Dependencies') {
