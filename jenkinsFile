@@ -27,6 +27,7 @@ pipeline {
                 bat 'npx cypress run --browser chrome --headless'
 
 
+
             }
         }
     }

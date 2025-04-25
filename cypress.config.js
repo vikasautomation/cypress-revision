@@ -1,4 +1,12 @@
 const { defineConfig } = require("cypress");
+module.exports = (on, config) => {
+  on('before:browser:launch', (browser = {}, launchOptions) => {
+    if (browser.name === 'electron') {
+      launchOptions.args.push('--disable-gpu', '--no-sandbox');
+    }
+    return launchOptions;
+  });
+};
 
 module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
