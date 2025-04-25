@@ -1,5 +1,5 @@
 export class SignUp{
-
+//ok
     webLocators={
         firstName:"#firstName",
         lastName:"#lastName",
