@@ -1,0 +1,33 @@
+pipeline {
+    agent {
+        docker {
+            image 'cypress/browsers:node18.12.0-chrome107'
+            args '-u root:root' // optional, gives root permissions
+        }
+    }
+
+    environment {
+        CYPRESS_baseUrl = 'https://thinking-tester-contact-list.herokuapp.com/'
+    }
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Run Cypress Tests') {
+            steps {
+                sh 'npx cypress run'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/cypress/screenshots/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**/cypress/videos/**', allowEmptyArchive: true
+        }
+    }
+}
