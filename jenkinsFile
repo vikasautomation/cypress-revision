@@ -9,7 +9,7 @@ pipeline {
                 sh 'npx cypress install'
             }
         }
-
+//okgit
         stage('Run Cypress Tests') {
             steps {
                 sh 'npx cypress run'
