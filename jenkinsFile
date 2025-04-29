@@ -16,7 +16,7 @@ pipeline {
             }
         }
     }
-
+//ok
     post {
         always {
             archiveArtifacts artifacts: '**/cypress/screenshots/**', allowEmptyArchive: true
